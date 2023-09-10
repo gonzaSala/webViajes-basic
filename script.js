@@ -1,15 +1,14 @@
 import { barcelona, roma, paris, londres } from "./ciudades.js";
-
 let enlaces = document.querySelectorAll('a')
 
 let tituloElemento = document.getElementById('titulo')
 let subTituloElemento = document.getElementById('subtitulo')
 let parrafoElemento = document.getElementById('parrafo')
 let precioElemento = document.getElementById('precio')
+let mainElement = document.querySelector('.contenedor'); 
 
 enlaces.forEach(function (enlace) {
     enlace.addEventListener('click', function () {
-
         enlaces.forEach(function (enlace) {
             enlace.classList.remove('active');
         })
@@ -22,6 +21,10 @@ enlaces.forEach(function (enlace) {
         subTituloElemento.innerHTML = contenido.subtitulo;
         parrafoElemento.innerHTML = contenido.parrafo;
         precioElemento.innerHTML = contenido.precio;
+
+        const cityName = this.textContent.toLowerCase();
+
+        mainElement.style.backgroundImage = `url('/Images/${cityName}.jpg')`;
     })
 });
 
@@ -34,4 +37,3 @@ function obtenerContenido(enlace) {
     }
     return contenido[enlace];
 }
-
